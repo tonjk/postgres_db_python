@@ -41,27 +41,28 @@ def main():
     
     if connection:
         try:
-            while True:
-                # Get user input
-                print("\nEnter user details (or press Enter to quit):")
-                name = input("Name: ").strip()
-                
-                if not name:  # Exit if name is empty
-                    break
-                    
-                email = input("Email: ").strip()
-                
-                # Add user to database
+            # Sample user data
+            users = [
+                ("John Smith", "john.smith@email.com"),
+                ("Mary Johnson", "mary.j@email.com"), 
+                ("Robert Wilson", "rwilson@email.com"),
+                ("Sarah Davis", "sarah.davis@email.com"),
+                ("Michael Brown", "mbrown@email.com"),
+                ("Jennifer Taylor", "jtaylor@email.com"),
+                ("David Miller", "dmiller@email.com"),
+                ("Lisa Anderson", "lisa.a@email.com"),
+                ("James Williams", "jwilliams@email.com"),
+                ("Emily Jones", "ejones@email.com")
+            ]
+            
+            # Add each user to database
+            for name, email in users:
                 user_id = add_user(connection, name, email)
                 
                 if user_id:
                     print(f"Successfully added user {name} with ID {user_id}")
                 else:
-                    print("Failed to add user")
-                    
-                continue_adding = input("\nAdd another user? (y/n): ").lower()
-                if continue_adding != 'y':
-                    break
+                    print(f"Failed to add user {name}")
                     
         finally:
             # Close connection
